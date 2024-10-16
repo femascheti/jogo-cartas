@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@300;400;500;600&display=swap');
+
+body {
+    font-family: "Bai Jamjuree", sans-serif;
+    text-align: center;
+    background-color: #fff;
+    color: #284260;
+}
+
+h1 {
+    margin-top: 20px;
+    font-weight: 700px;
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-gap: 10px;
+    justify-content: center;
+    margin: 20px auto;
+    max-width: 500px;
+}
+
+#game-board img {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.selected {
+    opacity: 0.5;
+}
+
+#score-board {
+    margin-top: 20px;
+    border: 3px solid #c75eeb;
+    border-radius: 10px;
+    width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#reset-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #c75eeb;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#reset-btn:hover {
+    background-color: #4ebfe9ff;
+}
+
+#message {
+    font-size: 1.5em;
+    color: white;
+    background-color: #c75eeb;
+    padding: 10px;
+    margin-top: 20px;
+    width: 300px;
+    text-align: center;
+    border-radius: 8px;
+    display: none; 
+    position: relative;
+    margin: 20px auto;
+}
