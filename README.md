@@ -12,5 +12,5 @@ O objetivo é selecionar 3 cartas que compartilhem uma característica comum, se
 * As cartas corretas desaparecem do tabuleiro.
 * O jogo termina quando todas as cartas forem removidas. A pontuação final será exibida, e um botão de "Jogar Novamente" aparecerá para reiniciar o jogo.
 
-Se você identificar algum erro ou problema no código, fique a vontade para entrar em contato.
+> Se você identificar algum erro ou problema no código, fique a vontade para entrar em contato.
 
