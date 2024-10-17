@@ -19,11 +19,12 @@ const cards = [
     "img_reta_vermelho_3.svg",
 ];
 
-let selectedCards = [];
-let score = 0;
+let cartasSelecionadas = [];
+let pontos = 0;
 
 const gameBoard = document.getElementById('game-board');
-const scoreElement = document.getElementById('score');
+const pontosElement = document.getElementById('pontos');
+const pontosBoard = document.getElementById('pontos-board'); 
 const resetBtn = document.getElementById('reset-btn');
 
 // Função para embaralhar o array
@@ -33,52 +34,53 @@ function shuffle(array) {
 
 // Função para iniciar o jogo
 function startGame() {
-    score = 0;
-    selectedCards = [];
+    pontos = 0;
+    cartasSelecionadas = [];
     gameBoard.innerHTML = '';
     resetBtn.style.display = 'none';
-    scoreElement.textContent = score;
+    pontosBoard.style.display = 'block';
+    pontosElement.textContent = pontos;
 
-    const shuffledCards = shuffle(cards).slice(0, 12);
+    const embaralhaCartas = shuffle(cards).slice(0, 12);
 
-    shuffledCards.forEach((card, index) => {
+    embaralhaCartas.forEach((card, index) => {
         const imgElement = document.createElement('img');
         imgElement.src = `imgs/${card}`;
         imgElement.setAttribute('data-card', card);
-        imgElement.addEventListener('click', () => selectCard(imgElement));
+        imgElement.addEventListener('click', () => cartaSelecionada(imgElement));
         gameBoard.appendChild(imgElement);
     });
 }
 
 // Função para selecionar uma carta
-function selectCard(cardElement) {
-    if (selectedCards.length < 3 && !cardElement.classList.contains('selected')) {
+function cartaSelecionada(cardElement) {
+    if (cartasSelecionadas.length < 3 && !cardElement.classList.contains('selected')) {
         cardElement.classList.add('selected');
-        selectedCards.push(cardElement);
+        cartasSelecionadas.push(cardElement);
 
-        if (selectedCards.length === 3) {
-            checkSelection();
+        if (cartasSelecionadas.length === 3) {
+            validaSelecao();
         }
     }
 }
 
 // Função para verificar o padrão selecionado
-function checkSelection() {
-    const cardValues = selectedCards.map(card => card.getAttribute('data-card'));
+function validaSelecao() {
+    const cardValues = cartasSelecionadas.map(card => card.getAttribute('data-card'));
 
     if (isValidSet(cardValues)) {
-        showMessage('Correto!');
-        score += 3;
+        mostraMensagem('Correto!');
+        pontos += 3;
     } else {
-        showMessage('Errado!');
-        score -= 3;
+        mostraMensagem('Errado!');
+        pontos -= 3;
     }
 
     // Remover as cartas selecionadas
-    selectedCards.forEach(card => card.remove());
+    cartasSelecionadas.forEach(card => card.remove());
 
-    selectedCards = [];
-    scoreElement.textContent = score;
+    cartasSelecionadas = [];
+    pontosElement.textContent = pontos;
 
     // Verifica se todas as cartas foram removidas
     if (gameBoard.childElementCount === 0) {
@@ -86,16 +88,11 @@ function checkSelection() {
     }
 }
 
-function showMessage(text) {
+function mostraMensagem(text) {
     const messageElement = document.getElementById('message');
     messageElement.textContent = text;
     messageElement.style.display = 'block';
-  
-    setTimeout(() => {
-      messageElement.style.display = 'none';
-    }, 2000); 
-  }
-  
+}
 
 // Função para verificar se a seleção é válida
 function isValidSet(cards) {
@@ -109,7 +106,8 @@ function isValidSet(cards) {
 
 // Função para finalizar o jogo
 function endGame() {
-    showMessage(`Sua pontuação final é: ${score}`);
+    mostraMensagem(`Sua pontuação final é: ${pontos}`);
+    pontosBoard.style.display = 'none'; 
     resetBtn.style.display = 'block';
 }
 
